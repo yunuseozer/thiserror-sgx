@@ -26,5 +26,5 @@ mesalock_sgx = ["sgx_tstd"]
 #rustversion = "1.0"
 #trybuild = { version = "1.0.19", features = ["diff"] }
 
-#[workspace]
-#members = ["impl"]
+[workspace]
+members = ["impl"]
