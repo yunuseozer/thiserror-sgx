@@ -201,12 +201,12 @@
 //!
 //!   [`anyhow`]: https://github.com/dtolnay/anyhow
 
-#![allow(
-    // Clippy bug: https://github.com/rust-lang/rust-clippy/issues/7421
-    clippy::doc_markdown,
-    clippy::module_name_repetitions,
-    clippy::return_self_not_must_use,
-)]
+#![cfg_attr(all(feature = "mesalock_sgx",
+                not(target_env = "sgx")), no_std)]
+#![cfg_attr(all(target_env = "sgx", target_vendor = "mesalock"), feature(rustc_private))]
+
+#[cfg(all(feature = "mesalock_sgx", not(target_env = "sgx")))]
+extern crate sgx_tstd as std;
 
 mod aserror;
 mod display;
